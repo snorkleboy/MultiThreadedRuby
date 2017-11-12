@@ -1,32 +1,40 @@
 #!/bin/bash
 
 
-numss=$( ./randomnums $1)
+numss=$( ./PPMTms/randomnums $1)
 nums=(${numss// / })
+
+
+parallellera(){
+ left[l]=$(./PPMTms/multimerge.rb ${left[lf]} )
+
+ echo left
+ echo ${left[l]}
+ echo shouldnt  eb wierd
+
+}
+parallellerb(){
+  right[r]=$( ./PPMTms/multimerge.rb ${right[rf]} )
+  echo right
+  echo ${right[r]}
+  echo shouldnt  eb wierd
+  echo
+}
+
+
 runstuff(){
-mp="${#nums[@]}/2"
-left[left]="${nums[@]:0:${mp}}"
-right[right]="${nums[@]:${mp}:${#nums[@]}}"
+  mp="${#nums[@]}/2"
+  left[lf]="${nums[@]:0:${mp}}"
+  right[rf]="${nums[@]:${mp}:${#nums[@]}}"
 
-#echo ${left[l]}
-#echo ${right[r]}
-#echo
-left[l]=$( ./multimerge ${left[@]} )
-right[r]=$( ./multimerge ${right[@]} )
-#echo
-#echo ${left[l]}
-#echo ${right[r]}
-
-#left[l]=$( ./multimerge ${left[@]} )
-#right[r]=$( ./multimerge ${right[@]} )
-left+=l
-
-#echo ${left[l]}
-#echo
-#echo ${right[r]}
-
-wait
-echo $(./merge ${left[l]} ${right[r]})
+  echo ${left[l]}
+  echo ${right[r]}
+  parallellera & parallellerb
+  wait
+  echo ${left[l]}
+  echo ${right[r]}
+  left[l]+=l
+  echo $(./PPMTms/merge ${left[l]} ${right[r]})
 
 }
 time runstuff

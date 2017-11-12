@@ -18,6 +18,13 @@ end
 
 
 arr=ARGV.join(' ').split('l')
-sortedarr=merge(arr[0].split(' ') , arr[1].split(' '))
+puts "______________________"
+puts "left"
+puts left=arr[0].split(' ')
+puts "______________"
+puts right =  arr[1].split(' ')
+puts "right"
+puts "_____________________"
+sortedarr=merge( left, right)
 
 system( "echo #{sortedarr.join(' ')}" )

@@ -4,7 +4,6 @@ require 'optparse'
 require 'pathname'
 # p Pathname.new($0).realpath()
 def manag(arr)
-  Thread.current[:arr]=arr
   mp = arr.length/2
   left =  Thread.new{ mergesort( arr[0...mp]) }
   right =  Thread.new{ mergesort(arr[mp...arr.length]) }
@@ -39,15 +38,9 @@ def merge(left, right)
 
   ans + left + right
 end
-# arr=ARGV
-#p "INPUT ARR"
-#p arr
-#p "END INPUT ARR"
-# sortedarr=manag(arr.to_a)
+arr=ARGV
 
-#p sortedarr
 sortedarr=manag(arr.to_a)
-
 system( "echo #{sortedarr.join(' ')}" )
 
 # options = {}
