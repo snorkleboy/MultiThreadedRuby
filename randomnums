@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+arr=[]
+ARGV[0].to_i.times{|x| arr.push(rand(ARGV[0].to_i))}
+# a=arr.to_s
+#p "ruby random nums " + arr.to_s[1...-1]
+system(" echo #{arr.join(' ')}")

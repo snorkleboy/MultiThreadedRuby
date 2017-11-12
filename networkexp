@@ -1,10 +1,14 @@
 #!/usr/bin/env ruby
+# this uses multi threading to make a call to
 require 'net/http'
 require 'socket'
+require 'nokogiri' # gem install nokogiri
+
 puts "start"
 # params = { url:limit => 10, :page => 3 }
 #   uri.query = URI.encode_www_form(params)
 uri = URI("http://www." + ARGV[0].to_s )
+
 b = Thread.new{
   puts "here"
   i=0
@@ -14,16 +18,22 @@ b = Thread.new{
     sleep(1)
     i=i+1
   end
-}
-a = Thread.new{
-  res = Net::HTTP.get_response(uri)
-  
-  puts res.body if res.is_a?(Net::HTTPSuccess)
-  if res.message == "OK"
-    res.body.scan(/<img /) { |x| puts x }
-  end
 
+  a = Thread.new{
+    sleep(15)
+    # res = Net::HTTP.get_response(uri)
+
+    # puts res.body if res.is_a?(Net::HTTPSuccess)
+    # if res.message == "OK"
+    #   res.body.scan(/<img /) { |x| puts x }
+    # # end
+    #
+    # doc = Nokogiri::HTML( res.body )
+    # puts img_srcs = doc.css('img').map{ |i| i['src'] } # Array of strings
+
+  }
+  a.join
 }
 
-a.join
+b.join
 b.kill

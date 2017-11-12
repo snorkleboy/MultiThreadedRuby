@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+def merge(left, right)
+
+  ans=[]
+  until (left.empty? || right.empty?)
+    if (right.first < left.first)
+      ans.push(right.shift())
+    else
+      ans.push(left.shift())
+    end
+  end
+
+  ans + left + right
+end
+
+
+
+
+arr=ARGV.join(' ').split('l')
+sortedarr=merge(arr[0].split(' ') , arr[1].split(' '))
+
+system( "echo #{sortedarr.join(' ')}" )

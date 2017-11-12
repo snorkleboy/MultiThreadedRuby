@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+#for bash manager
 require 'optparse'
 require 'pathname'
 # p Pathname.new($0).realpath()
@@ -39,15 +39,13 @@ def merge(left, right)
 
   ans + left + right
 end
-# arr=ARGV
+arr=ARGV
 #p "INPUT ARR"
 #p arr
 #p "END INPUT ARR"
-# sortedarr=manag(arr.to_a)
-
-#p sortedarr
 sortedarr=manag(arr.to_a)
 
+#p sortedarr
 system( "echo #{sortedarr.join(' ')}" )
 
 # options = {}
